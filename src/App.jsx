@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from "./pages/Login";
 import Generator from "./pages/Generator";
 import Verify from "./pages/Verify";
@@ -10,8 +10,18 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={auth ? <Navigate to="/generator" /> : <Login setAuth={setAuth} />} />
-        <Route path="/generator" element={auth ? <Generator /> : <Navigate to="/" />} />
+        <Route
+          path="/"
+          element={
+            auth ? <Navigate to="/generator" replace /> : <Login setAuth={setAuth} />
+          }
+        />
+        <Route
+          path="/generator"
+          element={
+            auth ? <Generator /> : <Navigate to="/" replace />
+          }
+        />
         <Route path="/verify" element={<Verify />} />
       </Routes>
     </Router>
