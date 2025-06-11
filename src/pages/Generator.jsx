@@ -79,14 +79,14 @@ const Generator = () => {
           </div>
 
           {/* Date */}
-          <div className="absolute bottom-[25%] left-[15%] text-sm md:text-md text-black">
+          <div className="absolute bottom-[25%] left-[22%] text-sm md:text-md text-black">
             {date}
           </div>
 
           {/* QR Code */}
           <div className="absolute bottom-[5%] right-[5%] flex flex-col items-center">
             <QRCode value={qrValue} size={60} />
-            <span className="text-[10px] md:text-xs mt-1 text-black">Verify your certificate</span>
+            <span className="text-[10px]  mt-1 text-black">Verify your certificate</span>
           </div>
         </div>
       </div>
