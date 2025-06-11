@@ -5,7 +5,7 @@ import Generator from "./pages/Generator";
 import Verify from "./pages/Verify";
 
 function App() {
-  const [auth, setAuth] = useState(localStorage.getItem("authenticated") === "true");
+  const [auth, setAuth] = useState(sessionStorage.getItem("authenticated") === "true");
 
   return (
     <Router>
