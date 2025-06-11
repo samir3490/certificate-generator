@@ -1,27 +1,38 @@
-import { useSearchParams } from 'react-router-dom';
+import React from "react";
+import { useSearchParams } from "react-router-dom";
+import certTemplate from "../assets/Certificate.png";
 
-export default function Verify() {
-  const [searchParams] = useSearchParams();
-  const name = searchParams.get("name");
-  const desc = searchParams.get("desc");
-  const date = searchParams.get("date");
+const Verify = () => {
+  const [params] = useSearchParams();
 
-  if (!name || !desc || !date) {
-    return <div className="text-red-500 text-center mt-10">Invalid or incomplete certificate link.</div>;
-  }
+  const name = params.get("name");
+  const desc = params.get("desc");
+  const date = params.get("date");
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-white p-4">
-      <h1 className="text-2xl font-bold text-green-600 mb-4">This certificate is verified</h1>
+    <div className="p-4 bg-gray-100 min-h-screen">
+      <h2 className="text-2xl font-bold text-center text-green-700 mb-4">Certificate Verified</h2>
 
-      <div
-        className="relative w-[800px] h-[600px] bg-no-repeat bg-contain"
-        style={{ backgroundImage: `url('../assets/Certificate.png')` }}
-      >
-        <div className="absolute top-[220px] left-[80px] text-[24px] font-bold">{name}</div>
-        <div className="absolute top-[300px] left-[80px] text-[18px]">{desc}</div>
-        <div className="absolute top-[380px] left-[80px] text-[16px]">{date}</div>
+      <div className="flex justify-center mt-6">
+        <div
+          className="relative w-[842px] h-[595px] bg-cover bg-center border"
+          style={{
+            backgroundImage: `url(${certTemplate})`,
+          }}
+        >
+          <div className="absolute top-[250px] w-full text-center text-2xl font-bold text-black">
+            {name}
+          </div>
+          <div className="absolute top-[300px] w-full text-center text-lg text-black">
+            {desc}
+          </div>
+          <div className="absolute bottom-[148px] left-[204px] text-md text-black">
+            {date}
+          </div>
+        </div>
       </div>
     </div>
   );
-}
+};
+
+export default Verify;

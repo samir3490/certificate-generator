@@ -1,36 +1,18 @@
-// src/App.jsx
 import React, { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from "./pages/Login";
 import Generator from "./pages/Generator";
 import Verify from "./pages/Verify";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [auth, setAuth] = useState(localStorage.getItem("authenticated") === "true");
 
   return (
     <Router>
       <Routes>
+        <Route path="/" element={auth ? <Navigate to="/generator" /> : <Login setAuth={setAuth} />} />
+        <Route path="/generator" element={auth ? <Generator /> : <Navigate to="/" />} />
         <Route path="/verify" element={<Verify />} />
-        <Route
-          path="/"
-          element={
-            isAuthenticated ? (
-              <Navigate to="/generate" />
-            ) : (
-              <Login setAuth={setIsAuthenticated} />
-            )
-          }
-        />
-        <Route
-          path="/generate"
-          element={isAuthenticated ? <Generator /> : <Navigate to="/" />}
-        />
       </Routes>
     </Router>
   );
