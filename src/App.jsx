@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from "./pages/Login";
 import Generator from "./pages/Generator";
 import Verify from "./pages/Verify";
-
+import './index.css'
 function App() {
   const [auth, setAuth] = useState(sessionStorage.getItem("authenticated") === "true");
 
